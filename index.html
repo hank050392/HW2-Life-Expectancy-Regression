@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Life Expectancy Prediction</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- =========================
+       Hero
+  ========================== -->
+  <header class="hero">
+
+    <div class="hero-content">
+
+      <p class="tag">HW2 · Multiple Linear Regression</p>
+
+      <h1>
+        Life Expectancy Prediction
+      </h1>
+
+      <p class="subtitle">
+        基於 WHO Life Expectancy Dataset 的多元線性迴歸分析
+      </p>
+
+      <div class="hero-info">
+
+        <span>20 Original Features</span>
+
+        <span>RFE → 14 Features</span>
+
+        <span>Multiple Linear Regression</span>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <main class="container">
+
+    <!-- =========================
+         Overview
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-title">
+
+        <p>01 · Overview</p>
+
+        <h2>
+          模型預測結果
+        </h2>
+
+        <div class="title-line"></div>
+
+      </div>
+
+
+      <div class="metric-grid">
+
+        <div class="metric-card">
+
+          <p>MAE</p>
+
+          <h3>2.9256</h3>
+
+          <span>Years</span>
+
+        </div>
+
+
+        <div class="metric-card">
+
+          <p>RMSE</p>
+
+          <h3>3.9501</h3>
+
+          <span>Years</span>
+
+        </div>
+
+
+        <div class="metric-card">
+
+          <p>R²</p>
+
+          <h3>0.8196</h3>
+
+          <span>Test Set</span>
+
+        </div>
+
+
+        <div class="metric-card">
+
+          <p>Adjusted R²</p>
+
+          <h3>0.8152</h3>
+
+          <span>14 Features</span>
+
+        </div>
+
+
+        <div class="metric-card highlight">
+
+          <p>95% PI Coverage</p>
+
+          <h3>94.37%</h3>
+
+          <span>Prediction Interval</span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         Project Description
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-title">
+
+        <p>02 · Problem</p>
+
+        <h2>
+          問題定義
+        </h2>
+
+        <div class="title-line"></div>
+
+      </div>
+
+
+      <div class="content-card">
+
+        <p>
+          本研究使用 WHO Life Expectancy Dataset，
+          以 <strong>Life expectancy</strong>
+          作為預測目標，利用國家健康狀況、死亡率、
+          疫苗接種率、BMI、教育、經濟及公共衛生等資訊，
+          建立 Multiple Linear Regression 模型。
+        </p>
+
+        <p>
+          原始資料共有 20 個輸入特徵。
+          在 Feature Selection 階段比較
+          SelectKBest 與 Recursive Feature Elimination（RFE），
+          最終採用 RFE 選出的 14 個特徵建立主模型。
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CRISP-DM
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-title">
+
+        <p>03 · CRISP-DM</p>
+
+        <h2>
+          分析流程
+        </h2>
+
+        <div class="title-line"></div>
+
+      </div>
+
+
+      <div class="process-grid">
+
+        <div class="process-card">
+          <span>01</span>
+          <h3>Business Understanding</h3>
+          <p>
+            建立可解釋的預期壽命預測模型，
+            分析健康及社經因素與 Life Expectancy 的關係。
+          </p>
+        </div>
+
+
+        <div class="process-card">
+          <span>02</span>
+          <h3>Data Understanding</h3>
+          <p>
+            檢查資料規模、資料型態、
+            缺失值以及各變數的基本統計特性。
+          </p>
+        </div>
+
+
+        <div class="process-card">
+          <span>03</span>
+          <h3>Data Preparation</h3>
+          <p>
+            移除 Target 缺失資料，
+            對數值欄位進行 Median Imputation，
+            Status 使用 One-Hot Encoding。
+          </p>
+        </div>
+
+
+        <div class="process-card">
+          <span>04</span>
+          <h3>Modeling</h3>
+          <p>
+            比較 Linear Regression、
+            Ridge 與 Lasso，
+            並搭配不同 Feature Selection 方法。
+          </p>
+        </div>
+
+
+        <div class="process-card">
+          <span>05</span>
+          <h3>Evaluation</h3>
+          <p>
+            使用 MAE、MSE、RMSE、
+            R² 與 Adjusted R² 評估模型。
+          </p>
+        </div>
+
+
+        <div class="process-card">
+          <span>06</span>
+          <h3>Deployment</h3>
+          <p>
+            將分析結果製作成 Web Dashboard，
+            並部署至 GitHub Pages。
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         Feature Selection
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-title">
+
+        <p>04 · Feature Selection</p>
+
+        <h2>
+          RFE 最終選擇的 14 個特徵
+        </h2>
+
+        <div class="title-line"></div>
+
+      </div>
+
+
+      <div class="feature-container">
+
+        <span>Adult Mortality</span>
+        <span>infant deaths</span>
+        <span>Alcohol</span>
+        <span>Hepatitis B</span>
+        <span>BMI</span>
+        <span>under-five deaths</span>
+        <span>Polio</span>
+        <span>Total expenditure</span>
+        <span>Diphtheria</span>
+        <span>HIV/AIDS</span>
+        <span>thinness 1-19 years</span>
+        <span>Income composition of resources</span>
+        <span>Schooling</span>
+        <span>Status_Developing</span>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         Model Comparison
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-title">
+
+        <p>05 · Model Evaluation</p>
+
+        <h2>
+          模型比較
+        </h2>
+
+        <div class="title-line"></div>
+
+      </div>
+
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>Feature Set</th>
+              <th>Model</th>
+              <th>Features</th>
+              <th>MAE</th>
+              <th>RMSE</th>
+              <th>R²</th>
+              <th>Adjusted R²</th>
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            <tr class="best-row">
+              <td>RFE</td>
+              <td>Linear Regression</td>
+              <td>14</td>
+              <td>2.9256</td>
+              <td>3.9501</td>
+              <td>0.8196</td>
+              <td>0.8152</td>
+            </tr>
+
+            <tr>
+              <td>RFE</td>
+              <td>Ridge</td>
+              <td>14</td>
+              <td>2.9247</td>
+              <td>3.9507</td>
+              <td>0.8196</td>
+              <td>0.8151</td>
+            </tr>
+
+            <tr>
+              <td>RFE</td>
+              <td>Lasso</td>
+              <td>14</td>
+              <td>2.9237</td>
+              <td>3.9510</td>
+              <td>0.8195</td>
+              <td>0.8151</td>
+            </tr>
+
+            <tr>
+              <td>All Features</td>
+              <td>Linear Regression</td>
+              <td>20</td>
+              <td>2.9273</td>
+              <td>3.9515</td>
+              <td>0.8195</td>
+              <td>0.8131</td>
+            </tr>
+
+            <tr>
+              <td>SelectKBest</td>
+              <td>Linear Regression</td>
+              <td>14</td>
+              <td>3.0133</td>
+              <td>4.0603</td>
+              <td>0.8094</td>
+              <td>0.8047</td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <p class="note">
+
+        最終選擇 RFE + Linear Regression。
+        RFE 將原始 20 個特徵降低至 14 個後，
+        仍維持最佳的 R² 與 Adjusted R²，
+        顯示 Feature Selection 能在降低模型複雜度的同時維持預測能力。
+
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         Prediction Interval
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-title">
+
+        <p>06 · Prediction Interval</p>
+
+        <h2>
+          95% Prediction Interval
+        </h2>
+
+        <div class="title-line"></div>
+
+      </div>
+
+
+      <div class="image-card">
+
+        <img
+          src="figures/prediction_interval.png"
+          alt="Prediction Interval"
+        />
+
+        <div class="image-description">
+
+          <h3>
+            Coverage = 94.37%
+          </h3>
+
+          <p>
+            模型建立 95% Prediction Interval，
+            實際測試資料的涵蓋率為 94.37%，
+            與理論上的 95% 非常接近。
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         Regression Assumptions
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-title">
+
+        <p>07 · Regression Assumptions</p>
+
+        <h2>
+          Five Regression Assumptions
+        </h2>
+
+        <div class="title-line"></div>
+
+      </div>
+
+
+      <div class="assumption-grid">
+
+        <div class="assumption-card warning">
+
+          <h3>Linearity</h3>
+
+          <p class="status">
+            Partially Satisfied
+          </p>
+
+          <p>
+            Residuals 大致分布於 0 附近，
+            但仍可觀察到部分結構，
+            表示資料可能存在非線性關係。
+          </p>
+
+        </div>
+
+
+        <div class="assumption-card pass">
+
+          <h3>Independence</h3>
+
+          <p class="status">
+            Satisfied
+          </p>
+
+          <p>
+            Durbin-Watson = 2.014，
+            接近理想值 2，
+            殘差沒有明顯一階自相關。
+          </p>
+
+        </div>
+
+
+        <div class="assumption-card fail">
+
+          <h3>Homoscedasticity</h3>
+
+          <p class="status">
+            Not Satisfied
+          </p>
+
+          <p>
+            Breusch-Pagan p-value &lt; 0.05，
+            表示存在顯著異質變異。
+          </p>
+
+        </div>
+
+
+        <div class="assumption-card warning">
+
+          <h3>Normality</h3>
+
+          <p class="status">
+            Not Fully Satisfied
+          </p>
+
+          <p>
+            Q-Q Plot 尾端偏離直線，
+            Jarque-Bera p-value 顯著，
+            表示 Residuals 並非完全常態。
+          </p>
+
+        </div>
+
+
+        <div class="assumption-card warning">
+
+          <h3>Multicollinearity</h3>
+
+          <p class="status">
+            Partially Satisfied
+          </p>
+
+          <p>
+            多數特徵 VIF &lt; 5，
+            但 infant deaths 與
+            under-five deaths 的 VIF
+            超過 150，存在高度共線性。
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         Diagnostic Figures
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-title">
+
+        <p>08 · Diagnostics</p>
+
+        <h2>
+          Residual Analysis
+        </h2>
+
+        <div class="title-line"></div>
+
+      </div>
+
+
+      <div class="chart-grid">
+
+        <div class="chart-card">
+
+          <img
+            src="figures/residuals_vs_fitted.png"
+            alt="Residuals vs Fitted"
+          />
+
+          <h3>
+            Residuals vs Fitted
+          </h3>
+
+          <p>
+            用於檢查線性關係與殘差變異是否一致。
+          </p>
+
+        </div>
+
+
+        <div class="chart-card">
+
+          <img
+            src="figures/qq_plot.png"
+            alt="Q-Q Plot"
+          />
+
+          <h3>
+            Q-Q Plot
+          </h3>
+
+          <p>
+            中央區域接近理論直線，
+            但尾端具有較明顯偏離。
+          </p>
+
+        </div>
+
+
+        <div class="chart-card">
+
+          <img
+            src="figures/residual_histogram.png"
+            alt="Residual Histogram"
+          />
+
+          <h3>
+            Residual Distribution
+          </h3>
+
+          <p>
+            Residuals 大致集中於 0 附近，
+            但仍可觀察到較長尾端。
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         Multicollinearity
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-title">
+
+        <p>09 · VIF</p>
+
+        <h2>
+          Multicollinearity Analysis
+        </h2>
+
+        <div class="title-line"></div>
+
+      </div>
+
+
+      <div class="content-card">
+
+        <p>
+          修正後的 VIF 分析顯示，
+          大部分特徵的 VIF 低於 5，
+          代表沒有嚴重的多重共線性問題。
+        </p>
+
+        <p>
+          然而
+          <strong>under-five deaths</strong>
+          的 VIF 為
+          <strong>159.44</strong>，
+          <strong>infant deaths</strong>
+          的 VIF 為
+          <strong>158.55</strong>。
+          兩項指標在概念上都與兒童死亡有關，
+          因此具有高度線性關聯。
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         Conclusion
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-title">
+
+        <p>10 · Conclusion</p>
+
+        <h2>
+          結論
+        </h2>
+
+        <div class="title-line"></div>
+
+      </div>
+
+
+      <div class="conclusion-card">
+
+        <h3>
+          R² = 0.8196
+        </h3>
+
+        <p>
+          本研究完成從資料理解、缺失值處理、
+          Feature Selection、模型建立、
+          Model Evaluation 到 Regression Assumption
+          檢查的完整 CRISP-DM 流程。
+        </p>
+
+        <p>
+          最終使用 RFE 選出的 14 個特徵建立
+          Multiple Linear Regression，
+          測試集 R² 達 0.8196，
+          Adjusted R² 為 0.8152，
+          顯示模型能解釋約 82% 的預期壽命變異。
+        </p>
+
+        <p>
+          雖然模型具有良好的整體預測能力，
+          但仍存在異質變異、殘差非完全常態，
+          以及部分高度共線性的特徵。
+          未來可進一步比較非線性模型，
+          或透過特徵重新設計改善模型假設。
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       Footer
+  ========================== -->
+
+  <footer>
+
+    <p>
+      HW2 · Multiple Linear Regression
+    </p>
+
+    <p>
+      Life Expectancy Prediction
+    </p>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>

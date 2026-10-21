@@ -1,0 +1,535 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    Inter,
+    "Noto Sans TC",
+    Arial,
+    sans-serif;
+
+  background: #f7f8fc;
+  color: #1d2330;
+  line-height: 1.7;
+}
+
+
+/* =========================
+   Hero
+========================= */
+
+.hero {
+  min-height: 470px;
+
+  display: flex;
+  align-items: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #11182a 0%,
+      #24375c 55%,
+      #495c8d 100%
+    );
+
+  color: white;
+}
+
+.hero-content {
+  width: min(1180px, 90%);
+  margin: auto;
+}
+
+.tag {
+  font-size: 14px;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(
+    42px,
+    7vw,
+    82px
+  );
+
+  line-height: 1.05;
+  margin-bottom: 18px;
+}
+
+.subtitle {
+  font-size: 20px;
+  opacity: 0.82;
+}
+
+.hero-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.hero-info span {
+  padding: 9px 15px;
+
+  border: 1px solid
+    rgba(255,255,255,0.25);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,0.08);
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   Layout
+========================= */
+
+.container {
+  width: min(1180px, 90%);
+  margin: auto;
+}
+
+.section {
+  padding: 85px 0;
+}
+
+.section-title p {
+  font-size: 13px;
+
+  letter-spacing: 2px;
+
+  color: #66718d;
+
+  margin-bottom: 6px;
+}
+
+.section-title h2 {
+  font-size: 36px;
+}
+
+.title-line {
+  width: 60px;
+  height: 4px;
+
+  background: #445b91;
+
+  margin-top: 14px;
+  margin-bottom: 35px;
+
+  border-radius: 999px;
+}
+
+
+/* =========================
+   Metric
+========================= */
+
+.metric-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(180px, 1fr)
+    );
+
+  gap: 18px;
+}
+
+.metric-card {
+  background: white;
+
+  padding: 26px;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 10px 35px
+    rgba(29, 40, 80, 0.08);
+}
+
+.metric-card p {
+  font-size: 13px;
+  color: #70798d;
+}
+
+.metric-card h3 {
+  font-size: 34px;
+  margin: 8px 0;
+}
+
+.metric-card span {
+  font-size: 13px;
+  color: #81899c;
+}
+
+.metric-card.highlight {
+  background: #253b70;
+  color: white;
+}
+
+.metric-card.highlight p,
+.metric-card.highlight span {
+  color: rgba(255,255,255,0.7);
+}
+
+
+/* =========================
+   Content
+========================= */
+
+.content-card,
+.conclusion-card {
+  background: white;
+
+  padding: 35px;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 10px 35px
+    rgba(29, 40, 80, 0.07);
+}
+
+.content-card p,
+.conclusion-card p {
+  margin-bottom: 18px;
+}
+
+.content-card p:last-child,
+.conclusion-card p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================
+   CRISP-DM
+========================= */
+
+.process-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(260px, 1fr)
+    );
+
+  gap: 18px;
+}
+
+.process-card {
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+
+  box-shadow:
+    0 8px 30px
+    rgba(25, 40, 80, 0.06);
+}
+
+.process-card span {
+  font-size: 13px;
+  color: #526a9e;
+  font-weight: bold;
+}
+
+.process-card h3 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.process-card p {
+  color: #636b7e;
+  font-size: 14px;
+}
+
+
+/* =========================
+   Features
+========================= */
+
+.feature-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.feature-container span {
+  background: white;
+
+  border: 1px solid #dde2ec;
+
+  border-radius: 999px;
+
+  padding: 10px 16px;
+
+  font-size: 14px;
+
+  box-shadow:
+    0 5px 18px
+    rgba(20,30,60,0.04);
+}
+
+
+/* =========================
+   Table
+========================= */
+
+.table-wrapper {
+  overflow-x: auto;
+
+  background: white;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 10px 35px
+    rgba(29, 40, 80, 0.07);
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 820px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 17px 18px;
+
+  border-bottom:
+    1px solid #ebedf3;
+
+  font-size: 14px;
+}
+
+th {
+  background: #202d4b;
+  color: white;
+}
+
+.best-row {
+  background: #edf2ff;
+  font-weight: 600;
+}
+
+.note {
+  margin-top: 22px;
+
+  padding: 20px;
+
+  border-left: 4px solid #4d659c;
+
+  background: white;
+
+  border-radius: 8px;
+}
+
+
+/* =========================
+   Images
+========================= */
+
+.image-card {
+  background: white;
+
+  padding: 22px;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 10px 35px
+    rgba(29,40,80,0.07);
+}
+
+.image-card img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+.image-description {
+  padding: 25px 8px 5px;
+}
+
+.image-description h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+
+/* =========================
+   Assumptions
+========================= */
+
+.assumption-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(210px, 1fr)
+    );
+
+  gap: 18px;
+}
+
+.assumption-card {
+  background: white;
+  padding: 26px;
+  border-radius: 16px;
+
+  border-top:
+    4px solid #9098a9;
+
+  box-shadow:
+    0 8px 30px
+    rgba(25,40,80,0.06);
+}
+
+.assumption-card h3 {
+  font-size: 18px;
+}
+
+.assumption-card .status {
+  margin: 10px 0;
+
+  font-weight: bold;
+}
+
+.assumption-card p:last-child {
+  font-size: 14px;
+  color: #646d80;
+}
+
+.assumption-card.pass {
+  border-top-color: #4c9b77;
+}
+
+.assumption-card.warning {
+  border-top-color: #d89b44;
+}
+
+.assumption-card.fail {
+  border-top-color: #c85d5d;
+}
+
+
+/* =========================
+   Charts
+========================= */
+
+.chart-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(320px, 1fr)
+    );
+
+  gap: 20px;
+}
+
+.chart-card {
+  background: white;
+
+  padding: 18px;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 8px 30px
+    rgba(25,40,80,0.07);
+}
+
+.chart-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.chart-card h3 {
+  margin-top: 18px;
+}
+
+.chart-card p {
+  font-size: 14px;
+  color: #6e7687;
+  margin-top: 8px;
+}
+
+
+/* =========================
+   Conclusion
+========================= */
+
+.conclusion-card h3 {
+  font-size: 44px;
+  margin-bottom: 20px;
+
+  color: #304d89;
+}
+
+
+/* =========================
+   Footer
+========================= */
+
+footer {
+  padding: 45px 20px;
+
+  text-align: center;
+
+  background: #11182a;
+
+  color: rgba(255,255,255,0.72);
+}
+
+footer p {
+  margin: 3px;
+}
+
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 700px) {
+
+  .hero {
+    min-height: 410px;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .section {
+    padding: 65px 0;
+  }
+
+  .section-title h2 {
+    font-size: 29px;
+  }
+
+}
